@@ -1,0 +1,12 @@
+{
+  "name": "uigen",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "setup": "npm install"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
