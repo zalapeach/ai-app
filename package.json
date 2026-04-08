@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "setup": "npm install && npx prisma generate"
+    "setup": "npm install && npx prisma generate && prisma migrate dev",
+    "db:reset": "npx prisma migrate reset --force"
   },
   "dependencies": {
     "@prisma/client": "^6.10.1"

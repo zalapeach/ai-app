@@ -5,3 +5,7 @@
 
 # generated files
 /src/generated/prisma
+
+# database
+/prisma/dev.db
+/prisma/deb.db-journal
