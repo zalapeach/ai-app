@@ -3,6 +3,8 @@ import type { NextRequest } from "next/server";
 import { verifySession } from "@/lib/auth";
 
 export async function middleware(request: NextRequest) {
+  const session =  await verifySession(request);
+
   return NextResponse.next();
 };
 
