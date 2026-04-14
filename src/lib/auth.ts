@@ -11,6 +11,22 @@ export interface SessionPayload {
   expiresAt: Date;
 }
 
+export async function getSession(): Promise<SessionPayload | null> {
+  const cookieStore = await cookies();
+  const token = cookieStore.get(COOKIE_NAME)?.value;
+
+  if (!token) {
+    return null
+  }
+
+  try {
+    const { payload } = await jwtVerify(token, JWT_SECRET);
+    return payload as unknown as SessionPayload;
+  } catch (error) {
+    return null;
+  }
+}
+
 export async function verifySession(
   request: NextRequest
 ): Promise<SessionPayload | null> {
