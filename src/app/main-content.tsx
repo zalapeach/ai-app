@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { FileSystemProvider } from "@/lib/contexts/file-system-context";
 
 interface MainContentProps {
   user?: {
@@ -19,4 +20,9 @@ interface MainContentProps {
 
 export function MainContent({user, project}: MainContentProps) {
   const [activeView, setActiveView] = useState<"preview" | "code">("preview");
+
+  return (
+    <FileSystemProvider initialData={project?.data}>
+    </FileSystemProvider>
+  );
 }
