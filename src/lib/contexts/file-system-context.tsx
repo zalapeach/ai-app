@@ -44,5 +44,9 @@ export function FileSystemProvider({
 }) {
   const [fileSystem] = useState(() => {
     const fs = providedFileSystem || new VirtualFileSystem();
+    if (initialData) {
+      fs.deserializeFromNodes(initialData);
+    }
+    return fs;
   });
 }
