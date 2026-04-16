@@ -42,4 +42,7 @@ export function FileSystemProvider({
   fileSystem?: VirtualFileSystem;
   initialData?: Record<string, any>;
 }) {
+  const [fileSystem] = useState(() => {
+    const fs = providedFileSystem || new VirtualFileSystem();
+  });
 }
