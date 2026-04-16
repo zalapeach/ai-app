@@ -49,6 +49,16 @@ export function FileSystemProvider({
     }
     return fs;
   });
+
+  return (
+    <FileSystemContext.Provider
+      value={{
+        fileSystem,
+      }}
+    >
+      {children}
+    </FileSystemContext.Provider>
+  );
 }
 
 export function useFileSystem() {

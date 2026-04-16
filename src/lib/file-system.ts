@@ -1,8 +1,14 @@
 export interface FileNode {
+  type: "file" | "directory";
+  name: string;
+  path: string;
+  content?: string;
+  children?: Map<string, FileNode>;
 }
 
 export class VirtualFileSystem {
   private files: Map<string, FileNode> = new Map();
+  private root: FileNode;
 
   constructor() {
     this.root = {
