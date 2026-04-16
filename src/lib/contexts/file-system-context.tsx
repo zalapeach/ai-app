@@ -1,5 +1,14 @@
 "use client";
 
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+} from "react";
+import { VirtualFileSystem, FileNode } from "@/lib/file-system";
+
 interface ToolCall {
   toolName: string;
   args: any;
@@ -29,4 +38,8 @@ export function FileSystemProvider({
   fileSystem: providedFileSystem,
   initialData,
 }: {
-})
+  children: React.ReactNode;
+  fileSystem?: VirtualFileSystem;
+  initialData?: Record<string, any>;
+}) {
+}

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FileSystemProvider } from "@/lib/contexts/file-system-context";
+import { ChatProvider } from "@/lib/contexts/chat-context";
 
 interface MainContentProps {
   user?: {
@@ -23,6 +24,8 @@ export function MainContent({user, project}: MainContentProps) {
 
   return (
     <FileSystemProvider initialData={project?.data}>
+      <ChatProvider projectId={project?.id} initialMessages={project?.messages}>
+      </ChatProvider>
     </FileSystemProvider>
   );
 }
