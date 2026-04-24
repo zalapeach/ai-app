@@ -49,11 +49,36 @@ export function FileSystemProvider({
     }
     return fs;
   });
+  const [selectedFile, setSelectedFile] = useState<string | null>(null);
+
+  const triggerRefresh = useCallback(() => {
+    setRefreshTrigger((prev) => prev + 1);
+  }, []);
+
+  const createFile = useCallback(
+    (path: string, content: string = "") => {
+      fileSystem.createFile(path, content);
+      triggerRefresh();
+    },
+    [fileSystem, triggerRefresh]
+  );
+
+  const updateFile = useCallback(
+    (path: string, content: string) => {
+      fileSystem.updateFile(path, content);
+      triggerRefresh();
+    },
+    [fileSystem, triggerRefresh]
+  );
 
   return (
     <FileSystemContext.Provider
       value={{
         fileSystem,
+        selectedFile,
+        setSelectedFile,
+        createFile,
+        updateFile,
       }}
     >
       {children}
