@@ -50,6 +50,7 @@ export function FileSystemProvider({
     return fs;
   });
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
+  const [refreshTrigger, setRefreshTrigger] =useState(0);
 
   const triggerRefresh = useCallback(() => {
     setRefreshTrigger((prev) => prev + 1);
@@ -71,6 +72,36 @@ export function FileSystemProvider({
     [fileSystem, triggerRefresh]
   );
 
+  const deleteFile = useCallback(
+    (path: string) => {
+      fileSystem.deleteFile(path);
+      if (selectedFile === path) {
+        setSelectedFile(null);
+      }
+      triggerRefresh();
+    },
+    [fileSystem, selectedFile, triggerRefresh]
+  );
+
+  const renameFile = useCallback(
+    (oldPath: string, newPath: string): boolean =>{
+      const success = fileSystem.rename(oldPath, newPath);
+      if (success) {
+        // Update selected file if it was renamed
+        if (selectedFile === oldPath) {
+          setSelectedFile(newPath);
+        } else if (selectedFile && selectedFile.startsWith(oldPath + "/")) {
+          // Updated selected file if it's inside a renamed directory
+          const relativePath = selectedFile.substring(oldPath.length);
+          setSelectedFile(newPath + relativePath);
+        }
+        triggerRefresh();
+      }
+      return success;
+    },
+    [fileSystem, selectedFile, triggerRefresh]
+  );
+
   return (
     <FileSystemContext.Provider
       value={{
@@ -79,6 +110,9 @@ export function FileSystemProvider({
         setSelectedFile,
         createFile,
         updateFile,
+        deleteFile,
+        renameFile,
+        getFileContent,
       }}
     >
       {children}

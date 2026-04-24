@@ -33,6 +33,12 @@ export function MainContent({user, project}: MainContentProps) {
           <ResizablePanelGroup direction ="horizontal" className="h-full">
             {/* Left Panel - Chat */}
             <ResizablePanel defaultSize={35} minSize={25} maxSize={50}>
+              <div className="h-full flex flex-col bg-white">
+                {/* Chat Header */}
+                <div className="h-14 flex items-center px-6 border-b border-neutral-200/60">
+                  <h1 className="text-lg font-semibold text-neutral-900 tracking-tight">React Component Generator</h1>
+                </div>
+              </div>
             </ResizablePanel>
           </ResizablePanelGroup>
         </div>
