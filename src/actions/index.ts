@@ -1,6 +1,14 @@
 "use server";
 
+import bcrypt from "bcrypt";
 import { createSession, deleteSession, getSession } from "@/lib/auth";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+
+export interface AuthResult {
+  success: boolean;
+  error?: string;
+}
 
 export async function getUser() {
   const session = await getSession();

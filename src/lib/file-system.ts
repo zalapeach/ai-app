@@ -72,6 +72,46 @@ export class VirtualFileSystem {
     return file;
   }
 
+  updateFile(path: string, content: string): boolean {
+    const normalized = this.normalizePath(path);
+    const file = this.files.get(normalized);
+
+    if (!file || file.type !== "file") {
+      return false;
+    }
+
+    file.content = content;
+    return true;
+  }
+
+  deleteFile(path: string): boolean {
+    const normalized = this.normalizePath(path);
+    const file = this.files.get(normalized);
+
+    if (!file || normalized === "/") {
+      return false;
+    }
+
+    const parent = this.getParentNode(normalized);
+    if (!parent || parent.type !== "directory") {
+      return false;
+    }
+
+    // If it's a directory, remove all children recursively
+    if (file.type === "directory" && file.children) {
+      for (const [_, child] of file.children) {
+        this.deleteFile(child.path);
+      }
+    }
+
+    parent.children!.delete(file.name);
+    this.files.delete(normalized);
+
+    return true;
+  }
+
+  rename(oldPath: string, newPath: string): boolean {}
+
   serialize(): Record<string, FileNode> {
     const result: Record<string, FileNode> = {};
 
