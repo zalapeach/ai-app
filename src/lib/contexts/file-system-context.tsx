@@ -102,6 +102,13 @@ export function FileSystemProvider({
     [fileSystem, selectedFile, triggerRefresh]
   );
 
+  const getFileContent = useCallback(
+    (path: string) => {
+      return fileSystem.readFile(path);
+    },
+    [fileSystem]
+  );
+
   return (
     <FileSystemContext.Provider
       value={{
