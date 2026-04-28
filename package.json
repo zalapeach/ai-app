@@ -13,10 +13,11 @@
   "dependencies": {
     "@ai-sdk/anthropic": "1.2.12",
     "@prisma/client": "^6.10.1",
-    "ai": "4.3.16",
+    "@tailwindcss/typography": "^0.5.16",
+    "ai": "^6.0.168",
     "clsx": "^2.1.1",
     "jose": "^6.0.11",
-    "next": "^15.5.15",
+    "next": "^16.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-markdown": "^10.1.0",
@@ -25,6 +26,7 @@
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4",
     "@types/node": "25.6.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "^19",
@@ -32,6 +34,7 @@
     "eslint": "9.29.0",
     "eslint-config-next": "15.3.4",
     "prisma": "^6.10.1",
+    "tailwindcss": "^4",
     "typescript": "^5"
   }
 }
