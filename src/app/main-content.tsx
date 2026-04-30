@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/resizable";
 import { FileSystemProvider } from "@/lib/contexts/file-system-context";
 import { ChatProvider } from "@/lib/contexts/chat-context";
-import { ChatInterface } from "@/components/chat/chat-interface";
+import { ChatInterface } from "@/components/chat/chat-interface"; // issue here
 
 interface MainContentProps {
   user?: {

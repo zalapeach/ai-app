@@ -2,16 +2,25 @@
 
 import { useEffect, useRef } from "react";
 import { MessageList } from "./message-list";
-import { MessageInput } from "./message-input"; //issue here
+import { MessageInput } from "./message-input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useChat } from "@/lib/contexts/chat-context";
+import { useChat } from "@/lib/contexts/chat-context"; // issue here
 
 export function ChatInterface() {
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const { messages, input, handleInputChange, handleSubmit, status } = useChat();
 
   // Auto-scroll to bottom when new messages arrive
-  useEffect(() => {});
+  useEffect(() => {
+    if (ScrollArea.current) {
+      const scrollContainer = scrollAreaRef.current.querySelector(
+        "[data-radix-scroll-area-viewport]"
+      );
+      if (scrollContainer) {
+        scrollContainer.scrollTop = scrollContainer.scrollHeight;
+      }
+    }
+  }, [messages]);
 
   return (
     <div className="flex flex-col h-full p-4 overflow-hidden">

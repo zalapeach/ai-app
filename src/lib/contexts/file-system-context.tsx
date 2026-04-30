@@ -113,6 +113,15 @@ export function FileSystemProvider({
     return fileSystem.getAllFiles();
   }, [fileSystem]);
 
+  const handleToolCall = useCallback(() => {
+    (toolCall: ToolCall) => {
+      const { toolName, args } = toolCall;
+
+      // Handle str replace_editor tool
+    },
+    [fileSystem, createFile, updateFile, deleteFile, renameFile]
+  });
+
   return (
     <FileSystemContext.Provider
       value={{
@@ -125,6 +134,8 @@ export function FileSystemProvider({
         renameFile,
         getFileContent,
         getAllFiles,
+
+        handleToolCall,
       }}
     >
       {children}
