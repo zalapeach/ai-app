@@ -112,6 +112,18 @@ export class VirtualFileSystem {
 
   rename(oldPath: string, newPath: string): boolean {}
 
+  getAllFiles(): Map<string, string> {
+    const fileMap = new Map<string, string>();
+
+    for (const [path, node] of this.files) {
+      if (node.type === "file") {
+        fileMap.set(path, node.content || "");
+      }
+    }
+
+    return fileMap;
+  }
+
   serialize(): Record<string, FileNode> {
     const result: Record<string, FileNode> = {};
 

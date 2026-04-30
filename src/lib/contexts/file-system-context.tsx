@@ -109,6 +109,10 @@ export function FileSystemProvider({
     [fileSystem]
   );
 
+  const getAllFiles = useCallback(() => {
+    return fileSystem.getAllFiles();
+  }, [fileSystem]);
+
   return (
     <FileSystemContext.Provider
       value={{
@@ -120,6 +124,7 @@ export function FileSystemProvider({
         deleteFile,
         renameFile,
         getFileContent,
+        getAllFiles,
       }}
     >
       {children}

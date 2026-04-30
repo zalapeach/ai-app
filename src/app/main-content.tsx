@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/resizable";
 import { FileSystemProvider } from "@/lib/contexts/file-system-context";
 import { ChatProvider } from "@/lib/contexts/chat-context";
+import { ChatInterface } from "@/components/chat/chat-interface";
 
 interface MainContentProps {
   user?: {
@@ -37,6 +38,10 @@ export function MainContent({user, project}: MainContentProps) {
                 {/* Chat Header */}
                 <div className="h-14 flex items-center px-6 border-b border-neutral-200/60">
                   <h1 className="text-lg font-semibold text-neutral-900 tracking-tight">React Component Generator</h1>
+                </div>
+                {/* Chat Content */}
+                <div className="flex-1 overflow-hidden">
+                  <ChatInterface />
                 </div>
               </div>
             </ResizablePanel>
