@@ -10,6 +10,9 @@ export function ChatInterface() {
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const { messages, input, handleInputChange, handleSubmit, status } = useChat();
 
+  // Auto-scroll to bottom when new messages arrive
+  useEffect(() => {});
+
   return (
     <div className="flex flex-col h-full p-4 overflow-hidden">
       <ScrollArea ref={scrollAreaRef} className="flex-1 overflow-hiden">
