@@ -1,6 +1,7 @@
 import { VirtualFileSystem } from "@/lib/file-system";
 import { streamText } from "ai";
 import { buildStrReplaceTool } from "@/lib/tools/str-replace";
+import { buildFileManagerTool } from "@/lib/tools/file-manager";
 import { getLanguageModel } from "@/lib/provider";
 import { generationPrompt } from "@/lib/prompts/generation";
 
@@ -37,9 +38,29 @@ export async function POST(req: Request) {
     },
     tools: {
       str_replace_editor: buildStrReplaceTool(fileSystem),
+      file_manager: buildFileManagerTool(fileSystem),
     },
+    onFinish: async ({ response }) => {
+      // Save the project if projectId is provided and user is authenticated
+      if (projectId) {
+        try {
+          // Check if user is authenticated
+          const session = await getSession();
+
+
+          console.log();
+          console.log("FROM /api/chat route, session");
+          console.log(session);
+
+        } catch (error) {
+          console.error("Failed to save project data", error);
+        }
+      }
+    }
   });
 
+  console.log();
+  console.log("FROM /api/chat route, the result");
   console.log(result.toDataStreamResponse());
   return result.toDataStreamResponse();
 }

@@ -118,6 +118,8 @@ export function FileSystemProvider({
       const { toolName, args } = toolCall;
 
       // Handle str replace_editor tool
+      console.log("== ToolName:");
+      console.log(toolName);
     },
     [fileSystem, createFile, updateFile, deleteFile, renameFile]
   });
