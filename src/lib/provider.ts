@@ -1,5 +1,7 @@
 import { anthropic } from "@ai-sdk/anthropic";
 
+const MODEL = "claude-haiku-4-5";
+
 export class MockLanguageModel implements LanguageModelV1 {
 };
 
