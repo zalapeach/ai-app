@@ -161,7 +161,6 @@ export class VirtualFileSystem {
       if (path === "/") continue; // Skip root
 
       const node = data[path];
-      console.log(node);
     }
   }
 }

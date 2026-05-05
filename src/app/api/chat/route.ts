@@ -46,12 +46,6 @@ export async function POST(req: Request) {
         try {
           // Check if user is authenticated
           const session = await getSession();
-
-
-          console.log();
-          console.log("FROM /api/chat route, session");
-          console.log(session);
-
         } catch (error) {
           console.error("Failed to save project data", error);
         }
@@ -59,9 +53,6 @@ export async function POST(req: Request) {
     }
   });
 
-  console.log();
-  console.log("FROM /api/chat route, the result");
-  console.log(result.toDataStreamResponse());
   return result.toDataStreamResponse();
 }
 
