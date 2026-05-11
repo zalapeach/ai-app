@@ -8,6 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 import { SignInForm } from "./sign-in-form";
 import { SignUpForm } from "./sign-up-form";
 
@@ -52,6 +53,32 @@ export function AuthDialog({
         ) : (
           <SignUpForm onSuccess={handleSuccess} />
         )}
+        </div>
+
+        <div className="mt-4 text-center text-sm">
+          {mode === "signin" ? (
+            <>
+              Don&apos;t have and account?{" "}
+              <Button
+                variant="link"
+                className="p-0 h-auto font-normal"
+                onClick={() => setMode("signup")}
+              >
+                Sign up
+              </Button>
+            </>
+          ) : (
+            <>
+              Already have an account?{" "}
+              <Button
+                variant="link"
+                className="p-0 h-auto font-normal"
+                onClick={() => setMode("signin")}
+              >
+                Sign in
+              </Button>
+            </>
+          )}
         </div>
       </DialogContent>
     </Dialog>
