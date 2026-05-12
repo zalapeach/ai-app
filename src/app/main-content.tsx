@@ -9,6 +9,8 @@ import {
 import { FileSystemProvider } from "@/lib/contexts/file-system-context";
 import { ChatProvider } from "@/lib/contexts/chat-context";
 import { ChatInterface } from "@/components/chat/chat-interface";
+import { FileTree } from "@/components/editor/file-tree";
+import { PreviewFrame } from "@/components/preview/preview-frame";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { HeaderActions } from "@/components/header-actions";
 
@@ -69,6 +71,37 @@ export function MainContent({user, project}: MainContentProps) {
                     </TabsList>
                   </Tabs>
                   <HeaderActions user={user} projectId={project?.id} />
+                </div>
+
+                {/* Content Area */}
+                <div className="flex-1 overflow-hidden bg-neutral-50">
+                  {activeView === "preview" ? (
+                    <div className="h-full bg-white">
+                      <PreviewFrame />
+                    </div>
+                  ) : (
+                    <ResizablePanelGroup
+                      direction="horizontal"
+                      className="h-full"
+                    >
+                      {/* File Tree */}
+                      <ResizablePanel
+                        defaultSize={30}
+                        minSize={20}
+                        maxSize={50}
+                      >
+                        <div className="h-full bg-neutral-50 border-r border-neutral-200">
+                          <FileTree />
+                        </div>
+                      </ResizablePanel>
+
+                      <ResizableHandle className="w-[1px] bg-neutral-200 hover:bg-neutral-300 transition-colors" />
+
+                      {/* Code Editor */}
+                      <ResizablePanel defaultSize={70}>
+                      </ResizablePanel>
+                    </ResizablePanelGroup>
+                  )}
                 </div>
               </div>
             </ResizablePanel>

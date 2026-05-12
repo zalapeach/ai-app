@@ -72,6 +72,11 @@ export class VirtualFileSystem {
     return file;
   }
 
+  getNode(path: string): FileNode | null {
+    const normalized = this.normalizePath(path);
+    return this.files.get(normalized) || null;
+  }
+
   updateFile(path: string, content: string): boolean {
     const normalized = this.normalizePath(path);
     const file = this.files.get(normalized);
