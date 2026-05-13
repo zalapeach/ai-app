@@ -10,6 +10,7 @@ import { FileSystemProvider } from "@/lib/contexts/file-system-context";
 import { ChatProvider } from "@/lib/contexts/chat-context";
 import { ChatInterface } from "@/components/chat/chat-interface";
 import { FileTree } from "@/components/editor/file-tree";
+import { CodeEditor } from "@/components/editor/code-editor";
 import { PreviewFrame } from "@/components/preview/preview-frame";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { HeaderActions } from "@/components/header-actions";
@@ -99,13 +100,15 @@ export function MainContent({user, project}: MainContentProps) {
 
                       {/* Code Editor */}
                       <ResizablePanel defaultSize={70}>
+                        <div className="h-full bg-white">
+                          <CodeEditor />
+                        </div>
                       </ResizablePanel>
                     </ResizablePanelGroup>
                   )}
                 </div>
               </div>
             </ResizablePanel>
-
           </ResizablePanelGroup>
         </div>
       </ChatProvider>
